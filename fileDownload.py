@@ -9,8 +9,12 @@ import key
 LEGACY_TOKEN = str(key.LT)
 CHANNEL_ID = str(key.CI)
 
-#　データが多量の時、途中で中止する数字
-STOP_COUNT = input("How many images do u wanna download ? : ")
+while True:
+    #　データが多量の時、途中で中止する数字
+    STOP_COUNT = input("How many images do u wanna download ? : ")
+    if STOP_COUNT.isdecimal():
+        break
+    print("Please enter a number .")
 
 def fileDownload():
     #重複した時用のカウンター
