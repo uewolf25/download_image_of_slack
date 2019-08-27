@@ -3,6 +3,7 @@
 
 import requests
 import json
+import os
 import os.path
 import key
 
@@ -49,7 +50,6 @@ def fileDownload():
             print("重複" + "(" + str(roop_count) + "回目)")
             count += 1
             file_title = deleteExtension(file_title, count)
-            # print(file_title)
 
         response = requests.get(file_url, headers=headers)
         # imgフォルダに画像を保存
@@ -59,9 +59,9 @@ def fileDownload():
 
 
 def deleteExtension(file_name, number):
-    #　ファイル名と拡張子分ける
+    # ファイル名と拡張子分ける
     name, extension = os.path.splitext(file_name)
-    #拡張子がない場合の追加
+    # 拡張子がない場合の追加
     if not extension:
         extension = ".jpg"
     names = '{}_{}{}'.format(name, str(number), extension)
@@ -70,7 +70,7 @@ def deleteExtension(file_name, number):
 #　拡張子がない時、「.jpg」を付与する。
 def addExtension(file_name):
     name, extension = os.path.splitext(file_name)
-    #拡張子がない場合の追加
+    # 拡張子がない場合の追加
     if not extension:
         extension = ".jpeg"
     names = '{}{}'.format(name, extension)
@@ -78,8 +78,11 @@ def addExtension(file_name):
 
 
 if __name__ == '__main__':
+    # 「img」フォルダが存在した時に消しておく。
+    if os.path.exists('img/'):
+        os.system('rm -r img/')
     while True:
-        #　データが多量の時、途中で中止する数字
+        # データが多量の時、途中で中止する数字
         STOP_COUNT = input("How many images do u wanna download ? : ")
         if STOP_COUNT.isdecimal():
             break
