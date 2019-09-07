@@ -12,3 +12,7 @@ __pycache__
 
 # image folder
 img/
+
+# some data
+.env.some_data
+
